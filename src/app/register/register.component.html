@@ -1,0 +1,89 @@
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+  
+        <a class="navbar-brand" routerLink="">
+          <i class="fa-sharp fa-solid fa-building-columns text-primary"></i>
+          &nbsp;<span class="title">Online Bank</span>
+        </a>
+   
+  </div>
+</nav>
+
+  <!-- logout popup -->
+  <div class="container mt-5" *ngIf="isLogout">
+    <div class="row text-center">
+      <div class="col">
+        <img class="w-25 d-block m-auto" 
+        src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif" alt="no image">
+        <h4 >Please wait.. We're Registering Your Details.... </h4>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container-fluid mt-2" *ngIf="!isLogout">
+  <h1 class="text-primary animate__animated animate__backInLeft">Account Opening Form</h1>
+  <p style="text-align: justify;">
+    This is Dummy Data: Lorem ipsum dolor sit amet consectetur, adipisicing
+    elit. Provident, vel dolorum. Optio dolores fuga, voluptatibus labore animi
+    assumenda? Consequuntur, accusantium neque? Laborum ex quod perferendis
+    facere reiciendis, iure vitae tempore.Lorem ipsum dolor sit amet consectetur, adipisicing
+    elit. Provident, vel dolorum. Optio dolores fuga, voluptatibus labore animi
+    assumenda? Consequuntur, accusantium neque? Laborum ex quod perferendis
+    facere reiciendis, iure vitae tempore.Lorem ipsum dolor sit amet consectetur, adipisicing
+    elit. Provident, vel dolorum. Optio dolores fuga, voluptatibus labore animi
+    assumenda? Consequuntur, accusantium neque? Laborum ex quod perferendis
+    facere reiciendis, iure vitae tempore.
+  </p>
+  <div class="row mt-3">
+    <div class="col-4 text-center">
+        <img width="170px" src="https://www.freeiconspng.com/uploads/person-icon-blue-9.png" alt="no image">
+        <br>
+        <a routerLink="" class="btn btn-primary mt-3">
+          <i class="fa-solid fa-hand-point-left"></i>
+          Back</a>
+    </div>
+    <div class="col-8">
+        <form (ngSubmit)="register()" [formGroup]="registerForm" class="border p-3 me-5 rounded">
+            <div class="form-floating mb-3">
+                <input formControlName="username" name="username" type="text" class="form-control" id="floatingInput" placeholder="Username">
+                <label for="floatingInput">Username</label>
+              </div>
+               <!-- Account number validation - structural directive ngIf -->
+            <div *ngIf="this.registerForm.get('username')?.errors&&this.registerForm.get('username')?.touched" class="text-danger">
+                Invalid Username
+            </div>
+              <div class="form-floating mb-3">
+                <input formControlName="acno" name="acno" type="text" class="form-control" id="floatingAcno" placeholder="Account Number">
+                <label for="floatingInput">Account Number</label>
+              </div>
+                <!-- Account number validation - structural directive ngIf -->
+            <div *ngIf="this.registerForm.get('acno')?.errors&&this.registerForm.get('acno')?.touched" class="text-danger">
+                Invalid Account Number
+            </div>
+              <div class="form-floating mb-3">
+                <input formControlName="pswd" name="pswd" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+                <!-- Account number validation - structural directive ngIf -->
+            <div *ngIf="this.registerForm.get('pswd')?.errors&&this.registerForm.get('pswd')?.touched" class="text-danger">
+                Invalid Password
+            </div>
+<!-- server response -->
+<div class="text-danger">
+<b> {{eMsg}} </b>
+</div>
+              <button *ngIf="!msg" type="submit" class="btn btn-primary mt-2">
+                Register
+              </button>
+               <!-- bootstrap spinner code -->
+               <button *ngIf="msg" class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+        </form>
+    </div>
+  </div>
+
+</div>

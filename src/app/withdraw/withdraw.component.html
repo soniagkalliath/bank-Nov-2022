@@ -1,0 +1,177 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <div class="col-lg-10">
+      <a class="navbar-brand" routerLink="/dashboard">
+        <i class="fa-sharp fa-solid fa-building-columns text-primary"></i>
+        &nbsp;<span class="title">Online Bank</span>
+      </a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+  </div>
+</nav>
+
+<!-- deposit form -->
+
+<div class="container-fluid mt-2">
+  <h1 class="text-primary animate__animated animate__backInLeft">
+    Withdraw Form
+  </h1>
+  <p class="text-align: justify;">
+    This is Dummy Data: Lorem ipsum dolor sit amet consectetur, adipisicing
+    elit. Provident, vel dolorum. Optio dolores fuga, voluptatibus labore animi
+    assumenda? Consequuntur, accusantium neque? Laborum ex quod perferendis
+    facere reiciendis, iure vitae tempore.Lorem ipsum dolor sit amet
+    consectetur, adipisicing elit. Provident, vel dolorum. Optio dolores fuga,
+    voluptatibus labore animi assumenda? Consequuntur, accusantium neque?
+    Laborum ex quod perferendis facere reiciendis, iure vitae tempore.Lorem
+    ipsum dolor sit amet consectetur, adipisicing elit. Provident, vel dolorum.
+    Optio dolores fuga, voluptatibus labore animi assumenda? Consequuntur,
+    accusantium neque? Laborum ex quod perferendis facere reiciendis, iure vitae
+    tempore.
+  </p>
+  <div class="row mt-3">
+    <div class="col-8">
+      <form
+        (ngSubmit)="withdraw()"
+        [formGroup]="withdrawForm"
+        class="border p-3 me-5 rounded"
+      >
+        <div class="form-floating mb-3">
+          <input
+            formControlName="acno"
+            name="acno"
+            type="text"
+            class="form-control"
+            id="floatingAcno"
+            placeholder="Account Number"
+          />
+          <label for="floatingInput">Account Number</label>
+        </div>
+        <!-- Account number validation - structural directive ngIf -->
+        <div
+          *ngIf="
+            this.withdrawForm.get('acno')?.errors &&
+            this.withdrawForm.get('acno')?.touched
+          "
+          class="text-danger"
+        >
+          Invalid Account Number
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            formControlName="pswd"
+            name="pswd"
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <!-- Account number validation - structural directive ngIf -->
+        <div
+          *ngIf="
+            this.withdrawForm.get('pswd')?.errors &&
+            this.withdrawForm.get('pswd')?.touched
+          "
+          class="text-danger"
+        >
+          Invalid Password
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            formControlName="amount"
+            name="amount"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Amount"
+          />
+          <label for="floatingInput">Amount</label>
+        </div>
+        <!-- Account number validation - structural directive ngIf -->
+        <div
+          *ngIf="
+            this.withdrawForm.get('amount')?.errors &&
+            this.withdrawForm.get('amount')?.touched
+          "
+          class="text-danger"
+        >
+          Invalid Amount
+        </div>
+        <!-- server response -->
+        <div class="text-danger">
+          <b> {{ eMsg }} </b>
+        </div>
+        <button *ngIf="!msg" type="submit" class="btn btn-primary mt-2">
+          Withdraw
+        </button>
+        <!-- bootstrap spinner code -->
+        <button *ngIf="msg" class="btn btn-primary" type="button" disabled>
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Loading...
+        </button>
+      </form>
+    </div>
+    <div class="col-4 text-center">
+      <img class="animate__animated animate__tada" width="230px" src="https://www.iconshock.com/image/Luminight/Accounting/deposit" alt="no image">
+      <br>
+      <a routerLink="/dashboard" class="btn btn-primary mt-3">
+        <i class="fa-solid fa-hand-point-left"></i>
+        Back</a>
+  </div>
+  </div>
+</div>
+
+<!-- balance enquiry -->
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+      Account Statement
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="text-center">
+        <img
+          width="200px"
+          src="https://cdn0.iconfinder.com/data/icons/business-dual-color-glyph-set-2/128/balance_sheet-512.png"
+          alt="no image"
+        />
+      </div>
+      <br />
+      <p>
+        Hi {{user}},
+        <br />
+        Your Current Balance is: <b>0</b>
+      </p>
+    </div>
+  </div>
+</div>

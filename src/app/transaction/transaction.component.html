@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+     <div class="col-lg-10">
+          <a class="navbar-brand" routerLink="/dashboard">
+            <i class="fa-sharp fa-solid fa-building-columns text-primary"></i>
+            &nbsp;<span class="title">Online Bank</span>
+          </a>
+     </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-2">
+    <h1 class="text-primary animate__animated animate__backInLeft">Transactions</h1>
+    <p class="text-align: justify;">
+      This is Dummy Data: Lorem ipsum dolor sit amet consectetur, adipisicing
+      elit. Provident, vel dolorum. Optio dolores fuga, voluptatibus labore animi
+      assumenda? Consequuntur, accusantium neque? Laborum ex quod perferendis
+      facere reiciendis, iure vitae tempore.Lorem ipsum dolor sit amet
+      consectetur, adipisicing elit. Provident, vel dolorum. Optio dolores fuga,
+      voluptatibus labore animi assumenda? Consequuntur, accusantium neque?
+      Laborum ex quod perferendis facere reiciendis, iure vitae tempore.Lorem
+      ipsum dolor sit amet consectetur, adipisicing elit. Provident, vel dolorum.
+      Optio dolores fuga, voluptatibus labore animi assumenda? Consequuntur,
+      accusantium neque? Laborum ex quod perferendis facere reiciendis, iure vitae
+      tempore.
+    </p>
+
+    <div class="container border p-3 m-5 " >
+        <div class="row">
+            <div class="col-lg-4">
+                <h3 class="text-success">Transaction History</h3>
+            </div>
+            <div class="col-lg-4">
+                <label for="search">Search By: </label> &nbsp;
+                <!-- (keyup)="search($event)" -->
+                <input (keyup)="search($event)" id="search" type="text" placeholder="Transaction type" >
+            </div>
+            <div class="col-lg-4">
+                <input style="float:right;" type="button" value="Export"
+                 class="btn btn-success"
+                 (click)="generatePdf()">  
+            </div>
+        </div>
+        <table class="table border mt-3 text-center">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+              <!-- | filter:searchKey:'type' -->
+                <tr *ngFor="let trans of transctions | filter:searchKey:'type' ; let i= index">
+                    <th> {{i+1}} </th>
+                    <th>{{trans.type}}</th>
+                    <th>{{trans.amount}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+  </div>
+
+
+  
+<!-- balance enquiry -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Account Statement</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div >
+  <div class="text-center ">
+          <img  width="200px" src="https://cdn0.iconfinder.com/data/icons/business-dual-color-glyph-set-2/128/balance_sheet-512.png" alt="no image">
+  
+  </div>
+        <br>
+        <p>
+          Hi {{user}},
+          <br>
+          Your Current Balance is:  <b>0</b>
+        </p>
+      </div>
+    </div>
+  </div>

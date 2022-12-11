@@ -1,0 +1,143 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+     <div class="col-lg-10">
+          <a class="navbar-brand" routerLink="dashboard">
+            <i class="fa-sharp fa-solid fa-building-columns text-primary"></i>
+            &nbsp;<span class="title">Online Bank</span>
+          </a>
+     </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Services
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="/deposit">Deposit</a></li>
+                  <li><a class="dropdown-item" routerLink="/withdraw">Withdraw</a></li>
+                  <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                     role="button" aria-controls="offcanvasExample" (click)="getBalance()" >Balance Enquiry</a></li>
+                  <li><a class="dropdown-item" routerLink="/transaction">Transaction History</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><button class="dropdown-item" (click)="deleteAcno()" >
+                    <i class="fa-solid fa-trash"></i>
+                    Delete Account</button>
+                </li>
+                <li >
+                    <button class="dropdown-item" (click)="logout()" >Sign Out 
+                      <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            
+            
+          </ul>
+       
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- logout popup -->
+  <div class="container mt-5" *ngIf="isLogout">
+    <div class="row text-center">
+      <div class="col">
+        <img class="w-25 d-block m-auto" 
+        src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif" alt="no image">
+        <h4 >Please wait.. You're Signing Out.... </h4>
+      </div>
+    </div>
+  </div>
+
+   
+
+  <!-- delete confirmation child selector -->
+  <app-delete-confirm [serverMsg]="deleteMsg" (onDelete)="deleteParent($event)" (onCancel)="cancel()"  [item]="acno" ></app-delete-confirm>
+
+<!-- dash board design -->
+<div *ngIf="!confirmMsg">
+  <div class="container" *ngIf="!isLogout "   [ngClass]="acno?'hide':'' " >
+    <div class="row" >
+      <div class="col-md-4 title">
+        <h1 style="margin-top: 100px">Welcome <span style="display: inline-block"
+          class="animate__animated animate__shakeY"
+          >{{user}}</span> </h1>
+        <div >
+            <label style="text-align: justify;" >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, modi
+              suscipit, fugiat aspernatur exercitationem.
+            </label>
+            <div style="text-align: justify;"  class="collapse" id="collapseExample">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, modi
+              suscipit, fugiat aspernatur exercitationem est illum inventore
+              reiciendis quae labore odio praesentium unde aliquid.Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, modi
+              suscipit, fugiat aspernatur exercitationem est illum inventore
+              reiciendis quae labore odio praesentium unde aliquid.
+            </div>
+              <button 
+                class="btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+                (click)="collapse()"
+              >
+                <label *ngIf="isCollapse">Read More</label>
+                <label *ngIf="!isCollapse">Read Less</label>
+              </button>
+        </div>
+        
+      </div>
+      <div class="col-8">
+        <img
+          class="img-fluid mt-5"
+          src="https://www.processmaker.com/wp-content/uploads/2020/05/Online-Mobile-Banking.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- balance enquiry -->
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+      Account Statement
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="text-center">
+        <img
+          width="200px"
+          src="https://cdn0.iconfinder.com/data/icons/business-dual-color-glyph-set-2/128/balance_sheet-512.png"
+          alt="no image"
+        />
+      </div>
+      <br />
+      <p>
+        Hi {{user}},
+        <br />
+       <span> {{balance}} </span>
+      </p>
+    </div>
+  </div>
+</div>

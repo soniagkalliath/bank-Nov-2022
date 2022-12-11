@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:wght@500&family=Dancing+Script:wght@600&family=Mohave&family=Moon+Dance&family=Oleo+Script+Swash+Caps:wght@700&family=Solway&display=swap');
+@import 'animate.css';
+body{
+   overflow-x: hidden;
+   font-family: 'Solway', serif;
+}
+
+
+
