@@ -85,7 +85,7 @@
                 data-bs-target="#collapseExample"
                 aria-expanded="false"
                 aria-controls="collapseExample"
-                (click)="collapse()"
+                (click)="collapse()" 
               >
                 <label *ngIf="isCollapse">Read More</label>
                 <label *ngIf="!isCollapse">Read Less</label>
@@ -106,7 +106,8 @@
 </div>
 
 <!-- balance enquiry -->
-<div
+<div 
+
   class="offcanvas offcanvas-start"
   tabindex="-1"
   id="offcanvasExample"
@@ -136,7 +137,16 @@
       <p>
         Hi {{user}},
         <br />
-       <span> {{balance}} </span>
+        <br>
+        <input style="width: 20px;height:20px;" type="checkbox" (click)="showconfetti($event.target)">
+ 
+        <label >  &nbsp; <span *ngIf="!showConffeti">Show</span>
+          <span *ngIf="showConffeti">Hide</span>
+          Balance</label>
+        
+        
+        <br />
+       <span *ngIf="showConffeti"> {{balance}} </span>
       </p>
     </div>
   </div>

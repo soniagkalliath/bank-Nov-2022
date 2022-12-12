@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+// import * as confetti from 'canvas-confetti';
+import party from "party-js";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +19,8 @@ export class DashboardComponent implements OnInit {
   deleteMsg=""
   eMsg=""
   confirmMsg=false
+  showConffeti:boolean=false
+  // ,private renderer2: Renderer2,private elementRef: ElementRef
   constructor(private api:ApiService,private router:Router) { }
 
   ngOnInit(): void {
@@ -41,6 +45,7 @@ export class DashboardComponent implements OnInit {
         //response 2xx
         (result:any)=>{
         this.balance = result.message
+       // this.surprise()
       },
       //response error
       (result:any)=>{
@@ -50,6 +55,27 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  //coffeti function
+  showconfetti(source:any){
+    this.showConffeti=!this.showConffeti
+    party.confetti(source);
+   
+  }
+
+
+//   public surprise(): void {
+ 
+//     const canvas = this.renderer2.createElement('canvas');
+//  console.log(this.elementRef.nativeElement);
+ 
+//     this.renderer2.appendChild(this.elementRef.nativeElement, canvas);
+ 
+//     const myConfetti = confetti.create(canvas, {
+//       resize: true // will fit all screen sizes
+//     });
+ 
+//     myConfetti();
+//    }
 
   // logout function
   logout(){
